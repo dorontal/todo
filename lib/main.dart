@@ -9,7 +9,7 @@ import 'package:amplify_datastore/amplify_datastore.dart';
 // amplify configuration and models that should have been generated for you
 import 'amplifyconfiguration.dart';
 import 'models/ModelProvider.dart';
-import 'models/Todo.dart';
+// import 'models/Todo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -156,9 +156,9 @@ class TodoItem extends StatelessWidget {
     }
   }
 
-  Future<void> _toggleisDone() async {
+  Future<void> _toggledone() async {
     // copy the Todo we wish to update, but with updated properties
-    Todo updatedTodo = todo.copyWith(isDone: !todo.isDone);
+    Todo updatedTodo = todo.copyWith(done: !todo.done);
     try {
       // to update data in DataStore, we again pass an instance of a model to
       // Amplify.DataStore.save()
@@ -173,7 +173,7 @@ class TodoItem extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: () {
-          _toggleisDone();
+          _toggledone();
         },
         onLongPress: () {
           _deleteTodo(context);
@@ -192,7 +192,7 @@ class TodoItem extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(todo.isDone ? Icons.check_box : Icons.check_box_outline_blank,
+            Icon(todo.done ? Icons.check_box : Icons.check_box_outline_blank,
                 size: iconSize),
           ]),
         ),
@@ -218,11 +218,11 @@ class _AddTodoFormState extends State<AddTodoForm> {
     String description = _descriptionController.text;
 
     // create a new Todo from the form values
-    // `isDone` is also required, but should start false in a new Todo
+    // `done` is also required, but should start false in a new Todo
     Todo newTodo = Todo(
         name: name,
         description: description.isNotEmpty ? description : null,
-        isDone: false);
+        done: false);
 
     try {
       // to write data to DataStore, we simply pass an instance of a model to
