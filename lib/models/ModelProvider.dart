@@ -26,7 +26,7 @@ export 'Todo.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "baadaa81674f46ae4229639a9728122b";
+  String version = "c550405bf9f2fee4fc0e2cc353bfd6cf";
   @override
   List<ModelSchema> modelSchemas = [Todo.schema];
   static final ModelProvider _instance = ModelProvider();
