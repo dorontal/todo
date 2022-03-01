@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "todo",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-729d9120-4e85-4956-a191-5101ddea6d4b/amplify/backend/api/todo/schema.graphql",
+    "gqlSchemaPath": "/home/dtal/repos/todo/amplify/backend/api/todo/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "This is an api key",
@@ -17,7 +17,15 @@
     "conflictResolution": {
       "defaultResolutionStrategy": {
         "type": "AUTOMERGE"
-      }
+      },
+      "perModelResolutionStrategy": [
+        {
+          "resolutionStrategy": {
+            "type": "AUTOMERGE"
+          },
+          "entityName": "Todo"
+        }
+      ]
     }
   }
 }

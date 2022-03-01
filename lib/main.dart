@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 // amplify packages we will need to use
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:amplify_datastore/amplify_datastore.dart';
+import 'package:amplify_api/amplify_api.dart';
 // amplify configuration and models that should have been generated for you
 import 'amplifyconfiguration.dart';
 import 'models/ModelProvider.dart';
-// import 'models/Todo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,8 +67,8 @@ class _TodosPageState extends State<TodosPage> {
     await _configureAmplify();
 
     // Query and Observe updates to Todo models. DataStore.observeQuery() will
-    // emit an initial QuerySnapshot with a list of Todo models in the local store,
-    // and will emit subsequent snapshots as updates are made
+    // emit an initial QuerySnapshot with a list of Todo models in the local
+    // store, and will emit subsequent snapshots as updates are made
     //
     // each time a snapshot is received, the following will happen:
     // _isLoading is set to false if it is not already false
@@ -85,7 +85,7 @@ class _TodosPageState extends State<TodosPage> {
   Future<void> _configureAmplify() async {
     try {
       // add Amplify plugins
-      await Amplify.addPlugins([_dataStorePlugin]);
+      await Amplify.addPlugins([AmplifyAPI(), _dataStorePlugin]);
 
       // configure Amplify
       //
@@ -152,7 +152,7 @@ class TodoItem extends StatelessWidget {
       // Amplify.DataStore.delete()
       await Amplify.DataStore.delete(todo);
     } catch (e) {
-      print('An error occurred while deleting Todo: $e');
+      developer.log('An error occurred while deleting Todo: $e');
     }
   }
 
@@ -164,7 +164,7 @@ class TodoItem extends StatelessWidget {
       // Amplify.DataStore.save()
       await Amplify.DataStore.save(updatedTodo);
     } catch (e) {
-      print('An error occurred while saving Todo: $e');
+      developer.log('An error occurred while saving Todo: $e');
     }
   }
 
@@ -232,7 +232,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
       // after creating a new Todo, close the form
       Navigator.of(context).pop();
     } catch (e) {
-      print('An error occurred while saving Todo: $e');
+      developer.log('An error occurred while saving Todo: $e');
     }
   }
 
