@@ -75,6 +75,8 @@ class _TodosPageState extends State<TodosPage> {
     // _todos is set to the value in the latest snapshot
     _subscription = Amplify.DataStore.observeQuery(Todo.classType)
         .listen((QuerySnapshot<Todo> snapshot) {
+      developer.log('DataStore: Got a snapshot');
+      developer.inspect(snapshot);
       setState(() {
         if (_isLoading) _isLoading = false;
         _todos = snapshot.items;
@@ -86,7 +88,6 @@ class _TodosPageState extends State<TodosPage> {
     try {
       // add Amplify plugins
       await Amplify.addPlugins([AmplifyAPI(), _dataStorePlugin]);
-
       // configure Amplify
       //
       // note that Amplify cannot be configured more than once!
